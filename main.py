@@ -19,14 +19,8 @@ def sort_on(dict):
 
 def dict_list(dict):
     listed_dicts = []
-
     for d in dict:
-        temp_dict = {}
-        if d.isalpha():
-            temp_dict["name"] = d
-            temp_dict["num"] = dict[d]
-            listed_dicts.append(temp_dict)
-
+        listed_dicts.append({'name': d, 'num': dict[d]})
     listed_dicts.sort(reverse=True, key=sort_on)
     return listed_dicts
 
@@ -42,8 +36,11 @@ def main():
 
     print(f'*** Begin report of {book_path} ***')
     print(f'{count_words(book_text)} words found in the document\n')
+
     for c in report_list:
-        print(f"The '{c['name']}' character was found {c['num']} times")
+        if c['name'].isalpha():
+            print(f"The '{c['name']}' character was found {c['num']} times")
+            
     print(f'*** End report ***')
 
 main()
